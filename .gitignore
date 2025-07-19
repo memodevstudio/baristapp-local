@@ -26,3 +26,7 @@ db/*.dump
 
 # Optional: coverage from tests
 coverage/
+
+# Next.js
+.next/
+out/

@@ -9,12 +9,13 @@ export default function UserForm({ onSuccess }: UserFormProps) {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [message, setMessage] = useState('')
+  const [password, setPassword] = useState('')
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
 
     // Validación básica
-    if (!name.trim() || !email.trim()) {
+    if (!name.trim() || !email.trim() || !password.trim() ){
       setMessage('⚠️ Por favor, completa todos los campos.')
       return
     }
@@ -30,13 +31,14 @@ export default function UserForm({ onSuccess }: UserFormProps) {
       const res = await fetch('http://localhost:3001/api/users', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, email }),
+        body: JSON.stringify({ name, email, password }),
       })
 
       if (res.ok) {
         setMessage('✅ Usuario creado exitosamente.')
         setName('')
         setEmail('')
+        setPassword('')
         onSuccess?.()
       } else {
         setMessage('❌ Error al crear el usuario.')
@@ -65,6 +67,16 @@ export default function UserForm({ onSuccess }: UserFormProps) {
         onChange={(e) => setEmail(e.target.value)}
         required
       />
+
+       <label className={styles.label}>Password</label>
+       <input
+         className={styles.input}
+         type="password"
+         value={password}
+         onChange={(e) => setPassword(e.target.value)}
+         placeholder="Contraseña"
+         required
+/>
 
       <button type="submit" className={styles.button}>Crear</button>
       <p className={styles.message}>{message}</p>
