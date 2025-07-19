@@ -4,6 +4,7 @@ const app = express();
 
 //importar rutas
 const userRoutes = require('./routes/userRoutes');
+const authRoutes = require('./routes/authRoutes');
 
 //middlewares
 app.use(cors());                                 // ← AGREGADO
@@ -11,6 +12,7 @@ app.use(express.json());
 
 //rutas
 app.use('/api', userRoutes);
+app.use('/api/auth', authRoutes);
 
 //ruta base
 
