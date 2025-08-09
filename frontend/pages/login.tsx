@@ -1,6 +1,10 @@
-// frontend/pages/login.tsx
 import LoginForm from '../components/LoginForm';
+import styles from '../styles/LoginPage.module.css';
 
-const LoginPage = () => <LoginForm />;
-
-export default LoginPage;
+export default function LoginPage() {
+  return (
+    <main className={styles.page}>
+      <LoginForm />
+    </main>
+  );
+}
